@@ -1,5 +1,22 @@
 "use strict";
 
+let darkMode = () => document.body.style.backgroundColor = 'black';
+let lightMode = () => document.body.style.backgroundColor = 'white';
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { 
+    darkMode() 
+} else { 
+    lightMode() 
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (e.matches) {
+        darkMode();
+    } else {
+        lightMode();
+    }
+})
+
 const urlParams = new URLSearchParams(window.location.search);
 const getIntParam = (name, defaultValue) => {
     const tmp = parseInt(urlParams.get(name));
